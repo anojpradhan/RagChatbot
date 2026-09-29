@@ -49,7 +49,7 @@ def get_text_chunks(text):
 # making vector store 
 
 def build_vector_store(chunks , api_key):
-    embeddings= GoogleGenerativeAIEmbeddings(model="modles/gemini-embedding-001", google_api_key= api_key)
+    embeddings= GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001", google_api_key= api_key)
     return FAISS.from_texts(chunks, embedding= embeddings)
 
 
@@ -72,7 +72,7 @@ def answer_question(question, vector_store, api_key, model_names, retries=4):
     """
     docs= vector_store.similarity_search(question, k=4)
     context= "\n\n".join(d.page_content for d in docs)
-    prompt= PROMPT_TEMPLATE( template= PROMPT_TEMPLATE, input_variables= ['context', 'question'])
+    prompt= PromptTemplate( template= PROMPT_TEMPLATE, input_variables= ['context', 'question'])
     
     errors=[]
     for model_name in model_names:
