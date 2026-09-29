@@ -1,0 +1,8 @@
+pandas
+streamlit
+langchain-community
+langchain-core
+langchain-google-genai
+langchain-text-splitters
+faiss-cpu
+PyPDF2
